@@ -1,0 +1,3 @@
+=== Login logs ===
+User logins are recorded in the audit_logs table.
+

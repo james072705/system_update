@@ -1,0 +1,414 @@
+/* ============================================================
+   KIOSK SELF-ORDERING STYLES (kiosk.css)
+   Modern self-ordering kiosk interface
+   ============================================================ */
+
+:root {
+  --kiosk-header: 72px;
+  --kiosk-nav: 64px;
+}
+
+body.kiosk-mode {
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* ---------- Kiosk top bar ---------- */
+.kiosk-topbar {
+  position: sticky; top: 0; z-index: 1030;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  padding: .8rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
+}
+.kiosk-topbar .k-brand { display: flex; align-items: center; gap: .75rem; }
+.kiosk-topbar .k-brand .logo {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(255,255,255,.2);
+  display: grid; place-items: center; font-size: 1.4rem;
+}
+.kiosk-topbar .k-brand h1 { color: #fff; font-size: 1.25rem; margin: 0; }
+.kiosk-topbar .k-brand small { opacity: .85; font-size: .75rem; }
+
+.kiosk-topbar .cart-btn {
+  background: #fff; color: var(--primary);
+  border: none; border-radius: 50px;
+  padding: .6rem 1.3rem;
+  font-weight: 700;
+  display: flex; align-items: center; gap: .5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  transition: transform .2s;
+}
+.kiosk-topbar .cart-btn:hover { transform: translateY(-2px); }
+.kiosk-topbar .cart-btn .count {
+  background: var(--primary); color: #fff;
+  border-radius: 50px; min-width: 24px; height: 24px;
+  display: grid; place-items: center; font-size: .8rem; padding: 0 .4rem;
+}
+
+/* ---------- Kiosk category nav ---------- */
+.kiosk-nav {
+  position: sticky; top: var(--kiosk-header); z-index: 1020;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: .6rem 1rem;
+  display: flex; gap: .5rem; overflow-x: auto;
+}
+.kiosk-nav .cat-btn {
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border-radius: 50px;
+  padding: .5rem 1.1rem;
+  font-weight: 700;
+  display: flex; align-items: center; gap: .5rem;
+  transition: all .2s;
+}
+.kiosk-nav .cat-btn:hover { border-color: var(--primary); color: var(--primary); }
+.kiosk-nav .cat-btn.active {
+  background: var(--primary); border-color: var(--primary); color: #fff;
+}
+
+/* ---------- Product grid ---------- */
+.kiosk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.kiosk-product {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.kiosk-product:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.12); }
+
+.kiosk-product .p-img {
+  height: 320px;
+  background: var(--bg-soft);
+  display: grid; place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.kiosk-product .p-img img { width: 100%; height: 100%; object-fit: cover; }
+.kiosk-product .p-img .p-img-icon { font-size: 5rem; color: var(--text-muted); opacity: .35; }
+
+.kiosk-product .p-img .stock-badge {
+  position: absolute; top: 8px; left: 8px;
+  font-size: .7rem; font-weight: 700;
+  padding: .25rem .55rem; border-radius: 50px;
+}
+
+.kiosk-product .p-body { padding: .9rem; display: flex; flex-direction: column; gap: .4rem; flex: 1; }
+.kiosk-product .p-name { font-weight: 700; font-size: .95rem; line-height: 1.3; min-height: 2.4em; }
+.kiosk-product .p-cat { font-size: .75rem; color: var(--text-muted); }
+.kiosk-product .p-price { font-size: 1.15rem; font-weight: 800; color: var(--primary); }
+
+.kiosk-product .p-stock { font-size: .78rem; }
+
+.kiosk-product .p-add {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: .6rem;
+  font-weight: 700;
+  background: var(--primary);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center; gap: .4rem;
+  transition: all .2s;
+}
+.kiosk-product .p-add:hover { background: var(--primary-dark); }
+.kiosk-product .p-add:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
+
+/* ---------- Kiosk search ---------- */
+.kiosk-search {
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+}
+.kiosk-search input {
+  width: 100%;
+  border-radius: 50px;
+  border: none;
+  padding: .7rem 1.2rem .7rem 2.8rem;
+  background: var(--bg-soft);
+  color: var(--text);
+}
+.kiosk-search i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+/* ---------- Cart / checkout ---------- */
+.checkout-page { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+.cart-table .qty-control { display: inline-flex; align-items: center; border: 1px solid var(--border); border-radius: 50px; overflow: hidden; }
+.cart-table .qty-control button {
+  width: 34px; height: 34px; border: none;
+  background: var(--bg-soft); color: var(--text);
+  font-weight: 700; font-size: 1rem;
+}
+.cart-table .qty-control button:hover { background: var(--bg-hover); }
+.cart-table .qty-control span { width: 40px; text-align: center; font-weight: 700; }
+
+/* Payment method cards */
+.pay-method { border: 2px solid var(--border); border-radius: var(--radius); padding: 1rem; text-align: center; cursor: pointer; transition: all .2s; background: var(--bg-card); }
+.pay-method:hover { border-color: var(--primary); }
+.pay-method.active { border-color: var(--primary); background: rgba(230,57,70,.06); }
+.pay-method i { font-size: 1.8rem; color: var(--primary); }
+.pay-method .pay-label { font-weight: 700; margin-top: .3rem; }
+
+/* Receipt */
+.receipt {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: 'Courier New', monospace;
+}
+.receipt .r-head { text-align: center; border-bottom: 2px dashed var(--border); padding-bottom: .8rem; margin-bottom: .8rem; }
+.receipt .r-row { display: flex; justify-content: space-between; padding: .15rem 0; }
+.receipt .r-dashed { border-top: 1px dashed var(--border); margin: .6rem 0; }
+.receipt .r-total { font-size: 1.2rem; font-weight: 800; }
+
+/* Success animation */
+.success-check {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: var(--success); color: #fff;
+  display: grid; place-items: center;
+  font-size: 3rem; margin: 0 auto 1rem;
+  animation: pop .5s ease;
+}
+@keyframes pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ============================================================
+   KIOSK LANDING / ADS SCREEN
+   Full-screen rotating promotional ads + Start Order button
+   ============================================================ */
+
+.kiosk-landing {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  overflow: hidden;
+  background: #0f1420;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Each ad slide */
+.landing-slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+  color: #fff;
+}
+.landing-slide.active { display: flex; animation: adFadeIn .8s ease; }
+
+@keyframes adFadeIn {
+  from { opacity: 0; transform: scale(1.04); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Gradient variations per ad */
+.ad-gradient-1 { background: linear-gradient(135deg, #1a1015 0%, #5a1a1a 55%, #b8860b 100%); }
+.ad-gradient-2 { background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5b 55%, #e76f51 100%); }
+.ad-gradient-3 { background: linear-gradient(135deg, #0f1420 0%, #2a2a5a 55%, #8e5bbf 100%); }
+.ad-gradient-4 { background: linear-gradient(135deg, #1b1b1b 0%, #4a2a0a 55%, #f4a261 100%); }
+.ad-gradient-5 { background: linear-gradient(135deg, #0a1f16 0%, #1c5a3a 55%, #2a9d8f 100%); }
+
+/* Floating decorative icons/animation in the background */
+.landing-slide .ad-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.landing-slide .ad-shapes i {
+  position: absolute;
+  color: rgba(255,255,255,.12);
+  font-size: 5rem;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(110vh) rotate(0deg); }
+  100% { transform: translateY(-20vh) rotate(360deg); }
+}
+
+/* Ad main content */
+.landing-slide .ad-content { position: relative; z-index: 2; max-width: 760px; text-align: center; color: #fff; }
+.landing-slide .ad-content * { color: #fff; }
+
+/* Natural drink/food photo display */
+.landing-slide .ad-photo {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  border: 5px solid rgba(255,255,255,.35);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  overflow: hidden;
+  position: relative;
+  animation: adPulse 3s ease-in-out infinite;
+}
+.landing-slide .ad-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.landing-slide .ad-photo .ad-photo-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 6rem;
+  background: rgba(255,255,255,.15);
+}
+@keyframes adPulse {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.04); }
+}
+.landing-slide .ad-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.2);
+  padding: .4rem 1.2rem;
+  border-radius: 50px;
+  font-size: .85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: .8rem;
+  color: #fff;
+}
+.landing-slide .ad-content { color: #fff; }
+.landing-slide h2 { font-size: 2.8rem; font-weight: 900; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,.4); }
+.landing-slide p  { font-size: 1.15rem; color: rgba(255,255,255,.9); margin-top: .5rem; }
+
+/* Dots indicator */
+.landing-dots {
+  position: absolute;
+  bottom: 96px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+}
+.landing-dots .dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  cursor: pointer;
+  transition: all .3s;
+  border: none;
+}
+.landing-dots .dot.active { background: #fff; transform: scale(1.3); }
+
+/* Start Order button - centered horizontally at bottom, above dots */
+.landing-start-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  color: #fff;
+  border: none;
+  border-radius: 60px;
+  padding: 1.1rem 3.2rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  box-shadow: 0 12px 40px rgba(230,57,70,.5);
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+  animation: startGlow 2s ease-in-out infinite;
+}
+.landing-start-btn:hover { transform: translateX(-50%) translateY(-3px) scale(1.03); }
+.landing-start-btn i { font-size: 1.8rem; }
+@keyframes startGlow {
+  0%,100% { box-shadow: 0 12px 40px rgba(230,57,70,.5); }
+  50%     { box-shadow: 0 12px 60px rgba(230,57,70,.85); }
+}
+
+/* Brand on landing */
+.landing-brand {
+  position: absolute;
+  top: 24px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  color: #fff;
+}
+.landing-brand .logo {
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.2);
+  display: grid; place-items: center;
+  font-size: 1.5rem;
+}
+.landing-brand h1 { font-size: 1.4rem; color: #fff; margin: 0; }
+.landing-brand small { color: rgba(255,255,255,.8); }
+
+/* ============================================================
+   KIOSK MENU (shown after Start Order)
+   Background stays fixed behind the menu
+   ============================================================ */
+
+.kiosk-menu-wrap {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: none;
+}
+body.kiosk-started .kiosk-menu-wrap { display: block; }
+
+/* Fixed background behind the menu (does not change between ads)
+   Follows the active theme via var(--bg): white in light mode, dark in dark mode */
+.kiosk-menu-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg);
+}
+body.kiosk-started .kiosk-menu-bg { display: block; }
+
+/* Menu topbar stays visible */
+.kiosk-menu-wrap .kiosk-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+body.kiosk-started .kiosk-topbar { display: flex !important; }
+
+/* Responsive */
+@media (max-width: 767.98px) {
+  .landing-slide h2 { font-size: 2rem; }
+  .landing-slide p { font-size: 1rem; }
+  .landing-start-btn { font-size: 1.2rem; padding: .9rem 2rem; bottom: 30px; }
+  .landing-slide .ad-photo { width: 180px; height: 180px; }
+  .landing-dots { bottom: 76px; }
+  .kiosk-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .8rem; padding: 1rem; }
+  .kiosk-product .p-img { height: 180px; }
+  .kiosk-topbar { padding: .6rem 1rem; }
+  .kiosk-topbar .k-brand h1 { font-size: 1rem; }
+}

@@ -1,0 +1,3 @@
+=== Activity logs ===
+System activity is recorded in the audit_logs table.
+

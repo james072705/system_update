@@ -1,0 +1,151 @@
+/* ============================================================
+   LOGIN PAGE STYLES (login.css)
+   ============================================================ */
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1015 0%, #2a1220 50%, #3a1420 100%);
+}
+
+.login-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,57,70,.35), transparent 70%);
+  top: -150px; right: -150px;
+  animation: float 8s ease-in-out infinite;
+}
+.login-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(69,123,157,.3), transparent 70%);
+  bottom: -120px; left: -120px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,.97);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+  animation: slideUp .5s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-card .login-logo {
+  width: 72px; height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  display: grid; place-items: center;
+  margin: 0 auto 1rem;
+  color: #fff; font-size: 2.2rem;
+  box-shadow: 0 8px 20px rgba(230,57,70,.4);
+}
+
+.login-card h2 { font-weight: 800; text-align: center; }
+.login-card .login-sub { text-align: center; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+.login-card .form-control {
+  border-radius: 12px;
+  padding: .75rem 1rem;
+  border: 2px solid var(--border);
+  background: #f8f9fc;
+  color: var(--text);
+}
+.login-card .form-control:focus {
+  border-color: #e63946;
+  background: #fff;
+  box-shadow: 0 0 0 .2rem rgba(230,57,70,.12);
+  color: var(--text);
+}
+
+.login-card .input-icon { position: relative; }
+.login-card .input-icon i {
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  color: #9aa7b8;
+}
+.login-card .input-icon input { padding-left: 2.6rem; }
+
+.login-card .btn-login {
+  width: 100%;
+  border-radius: 12px;
+  padding: .8rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  color: #fff;
+  border: none;
+  transition: all .2s;
+}
+.login-card .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,57,70,.4); }
+
+.login-footer { text-align: center; margin-top: 1.25rem; font-size: .85rem; color: var(--text-muted); }
+
+/* Dark mode login */
+[data-theme="dark"] .login-card {
+  background: #1a2231;
+  color: var(--text);
+}
+[data-theme="dark"] .login-card .login-sub { color: var(--text-muted); }
+[data-theme="dark"] .login-card .form-control {
+  background: #232c3d;
+  border-color: #2c3849;
+  color: var(--text);
+}
+[data-theme="dark"] .login-card .form-control:focus { background: #232c3d; color: var(--text); }
+
+/* ---------- Role selection cards (register) ---------- */
+.role-option { display: block; cursor: pointer; }
+.role-option.disabled { cursor: not-allowed; opacity: .5; }
+
+.role-card {
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem .5rem;
+  background: #f8f9fc;
+  transition: all .2s;
+}
+.role-card i { font-size: 1.6rem; color: var(--text-muted); display: block; margin-bottom: .4rem; }
+.role-card .fw-bold { font-size: .95rem; }
+
+.role-option input[type="radio"]:checked + .role-card {
+  border-color: #e63946;
+  background: rgba(230,57,70,.08);
+  box-shadow: 0 0 0 3px rgba(230,57,70,.15);
+}
+.role-option input[type="radio"]:checked + .role-card i { color: #e63946; }
+
+.role-option:not(.disabled):hover .role-card {
+  border-color: #e63946;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .role-card {
+  border-color: #2c3849;
+  background: #232c3d;
+}
+[data-theme="dark"] .role-card i { color: var(--text-muted); }
+[data-theme="dark"] .role-option input[type="radio"]:checked + .role-card {
+  border-color: #e63946;
+  background: rgba(230,57,70,.15);
+}

@@ -1,0 +1,3 @@
+=== Error logs ===
+PHP/Python errors are captured here for debugging.
+

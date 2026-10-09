@@ -1,0 +1,15 @@
+Options -Indexes
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+</IfModule>
+
+<FilesMatch "\.(sql|md|pkl|py)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+php_value upload_max_filesize 10M
+php_value post_max_size 12M
+

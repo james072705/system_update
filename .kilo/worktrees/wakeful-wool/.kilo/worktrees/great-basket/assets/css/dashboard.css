@@ -1,0 +1,257 @@
+/* ============================================================
+   ADMIN DASHBOARD STYLES (dashboard.css)
+   ============================================================ */
+
+/* ---------- Layout ---------- */
+.app-wrapper { display: flex; min-height: 100vh; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition);
+  overflow-y: auto;
+}
+
+.sidebar .brand {
+  display: flex; align-items: center; gap: .75rem;
+  padding: 1.25rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar .brand .logo {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  display: grid; place-items: center;
+  color: #fff; font-size: 1.3rem;
+  box-shadow: 0 4px 12px rgba(230,57,70,.35);
+}
+.sidebar .brand .brand-text { font-weight: 800; line-height: 1.1; }
+.sidebar .brand .brand-text small { display: block; font-size: .7rem; color: var(--text-muted); font-weight: 600; }
+
+.sidebar .nav-section {
+  padding: .8rem 1.25rem .3rem;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.sidebar .nav-link {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .65rem 1.25rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: .93rem;
+  border-left: 3px solid transparent;
+  transition: all .2s;
+}
+.sidebar .nav-link i { font-size: 1.1rem; width: 22px; text-align: center; }
+.sidebar .nav-link:hover { background: var(--bg-hover); color: var(--text); }
+.sidebar .nav-link.active {
+  background: linear-gradient(90deg, rgba(230,57,70,.12), transparent);
+  color: var(--primary);
+  border-left-color: var(--primary);
+}
+.sidebar .nav-link .badge { margin-left: auto; }
+
+.sidebar .sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Main content ---------- */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ---------- Topbar ---------- */
+.topbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: .75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+.topbar .page-title { font-weight: 700; font-size: 1.15rem; }
+.topbar .breadcrumb { margin: 0; font-size: .85rem; background: transparent; }
+
+.topbar .icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: var(--bg-soft);
+  border: none;
+  color: var(--text);
+  display: grid; place-items: center;
+  position: relative;
+  transition: all .2s;
+}
+.topbar .icon-btn:hover { background: var(--bg-hover); transform: translateY(-1px); }
+.topbar .icon-btn .dot {
+  position: absolute; top: 8px; right: 9px;
+  width: 9px; height: 9px;
+  background: var(--danger);
+  border-radius: 50%;
+  border: 2px solid var(--bg-card);
+}
+
+.topbar .user-chip {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .35rem .8rem .35rem .4rem;
+  border-radius: 50px;
+  background: var(--bg-soft);
+  cursor: pointer;
+}
+.topbar .user-chip .avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--info), var(--primary));
+  color: #fff;
+  display: grid; place-items: center;
+  font-weight: 700;
+}
+.topbar .user-chip .role-badge { font-size: .7rem; color: var(--text-muted); }
+
+/* ---------- Stat cards ---------- */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  transition: transform .2s;
+}
+.stat-card:hover { transform: translateY(-3px); }
+.stat-card .stat-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  font-size: 1.4rem;
+  margin-bottom: .8rem;
+}
+.stat-card .stat-value { font-size: 1.6rem; font-weight: 800; line-height: 1.1; }
+.stat-card .stat-label { color: var(--text-muted); font-size: .85rem; font-weight: 600; }
+.stat-card .stat-trend { font-size: .8rem; font-weight: 700; }
+
+.bg-grad-primary { background: linear-gradient(135deg,#e63946,#c1121f); }
+.bg-grad-success { background: linear-gradient(135deg,#2a9d8f,#23837a); }
+.bg-grad-warning { background: linear-gradient(135deg,#f4a261,#e08f3d); }
+.bg-grad-info    { background: linear-gradient(135deg,#457b9d,#3a6b8a); }
+.bg-grad-purple  { background: linear-gradient(135deg,#8e5bbf,#6f3fae); }
+.bg-grad-pink    { background: linear-gradient(135deg,#e76f51,#d95c3f); }
+
+.text-grad-primary { background: linear-gradient(135deg,#e63946,#c1121f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ---------- Chart containers ---------- */
+.chart-box { position: relative; height: 280px; }
+.chart-box-sm { position: relative; height: 220px; }
+
+/* ---------- Notification dropdown ---------- */
+.notif-menu { max-height: 380px; overflow-y: auto; width: 340px; }
+.notif-item { display: flex; gap: .75rem; padding: .75rem 1rem; border-bottom: 1px solid var(--border); }
+.notif-item:hover { background: var(--bg-soft); }
+.notif-item .notif-icon { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; }
+.notif-item .notif-time { font-size: .75rem; color: var(--text-muted); }
+
+/* ============================================================
+   RESPONSIVE / MOBILE-FRIENDLY
+   Auto-adjusts sizes so nothing gets cut off on any device
+   ============================================================ */
+
+/* Prevent horizontal page overflow */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, canvas, svg { max-width: 100%; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991.98px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main-content { margin-left: 0; }
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    z-index: 1035; display: none;
+  }
+  .sidebar-backdrop.show { display: block; }
+
+  /* Smaller sidebar on tablets */
+  .sidebar { width: 240px; }
+}
+
+/* ---------- Tablets & small laptops ---------- */
+@media (max-width: 767.98px) {
+  /* Stack stat cards - 2 per row max spacing */
+  .stat-card { padding: 1rem; }
+  .stat-card .stat-value { font-size: 1.35rem; }
+
+  /* Topbar cleanup */
+  .topbar { padding: .6rem .9rem; gap: .6rem; flex-wrap: wrap; }
+  .topbar .breadcrumb { display: none; }
+  .topbar .page-title { font-size: 1rem; }
+  .topbar .icon-btn { width: 36px; height: 36px; }
+  .topbar .user-chip .d-none { display: none !important; }
+
+  /* Charts smaller on mobile */
+  .chart-box { height: 220px; }
+  .chart-box-sm { height: 180px; }
+
+  /* Notification dropdown full width on mobile */
+  .notif-menu { width: 280px; max-width: 90vw; }
+
+  /* Card padding */
+  .card-body { padding: 1rem; }
+  .card-header { padding: .85rem 1rem; }
+
+  /* Buttons full width where useful */
+  .btn-block-sm { width: 100%; }
+  .main-content > main { padding: .75rem !important; }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 575.98px) {
+  /* Stat cards stack to 1 column */
+  .stat-card { margin-bottom: .75rem; }
+  .stat-card .stat-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+
+  /* Compact tables */
+  .table { font-size: .82rem; }
+  .table thead th { font-size: .72rem; }
+
+  /* Forms full width */
+  .form-control, .form-select { padding: .5rem .75rem; }
+
+  /* Buttons */
+  .btn { padding: .45rem .8rem; font-size: .88rem; }
+
+  /* Dropdown user menu */
+  .topbar .user-chip { padding: .3rem .5rem .3rem .3rem; }
+
+  /* Main padding */
+  .main-content > main { padding: .6rem !important; }
+}
+
+/* ---------- Offcanvas / dropdown dark fix ---------- */
+.dropdown-menu { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow); }
+.dropdown-item { color: var(--text); }
+.dropdown-item:hover { background: var(--bg-soft); color: var(--text); }
+.dropdown-header { color: var(--text-muted); }
+.dropdown-divider { border-color: var(--border); }

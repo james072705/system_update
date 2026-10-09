@@ -1,0 +1,424 @@
+/* ============================================================
+   THEME-AWARE TEXT & COLOR OVERRIDES
+   Fixes text visibility in both dark and light mode
+   ============================================================ */
+
+/* ---------- Bootstrap text color utilities (theme-aware) ---------- */
+/* .text-white is intentionally kept white (used on colored/gradient backgrounds) */
+.text-muted    { color: var(--text-muted) !important; }
+.text-secondary{ color: var(--text-muted) !important; }
+.text-body     { color: var(--text) !important; }
+.text-body-secondary { color: var(--text-muted) !important; }
+.text-dark     { color: var(--text) !important; }
+.text-black    { color: var(--text) !important; }
+.text-reset    { color: var(--text) !important; }
+
+/* Dark mode */
+[data-theme="dark"] .text-muted     { color: var(--text-muted) !important; }
+[data-theme="dark"] .text-secondary { color: var(--text-muted) !important; }
+[data-theme="dark"] .text-body      { color: var(--text) !important; }
+[data-theme="dark"] .text-body-secondary { color: var(--text-muted) !important; }
+[data-theme="dark"] .text-dark      { color: var(--text) !important; }
+[data-theme="dark"] .text-black     { color: var(--text) !important; }
+[data-theme="dark"] .text-reset     { color: var(--text) !important; }
+
+/* Utility text colors that need to stay readable on colored backgrounds */
+[data-theme="dark"] .text-white { color: #fff !important; }
+
+/* text-dark must stay dark on light-colored badges (e.g. Low Stock on yellow) */
+[data-theme="dark"] .bg-warning .text-dark,
+[data-theme="dark"] .badge.bg-warning.text-dark,
+[data-theme="dark"] .bg-light .text-dark,
+[data-theme="dark"] .btn-light .text-dark { color: #1d2630 !important; }
+
+/* Tables (Bootstrap hardcodes muted text in cells) */
+[data-theme="dark"] .table {
+  --bs-table-bg: transparent;
+  color: var(--text);
+  --bs-table-color: var(--text);
+}
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th {
+  color: var(--text);
+}
+[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-bg: var(--bg-soft);
+  --bs-table-color: var(--text);
+}
+[data-theme="dark"] .table-hover > tbody > tr:hover {
+  --bs-table-bg: var(--bg-hover);
+  --bs-table-color: var(--text);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body { background: var(--bg); }
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .topbar,
+[data-theme="dark"] .kiosk-nav,
+[data-theme="dark"] .kiosk-product,
+[data-theme="dark"] .receipt,
+[data-theme="dark"] .notif-menu {
+  background: var(--bg-card);
+}
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  background: var(--bg-soft);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+  background: var(--bg-soft);
+  color: var(--text);
+}
+
+[data-theme="dark"] .table {
+  --bs-table-bg: transparent;
+  color: var(--text);
+}
+
+[data-theme="dark"] .btn-light {
+  background: var(--bg-soft);
+  color: var(--text);
+}
+
+[data-theme="dark"] .modal-content {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Chart.js text color adjustments handled via JS options */
+
+/* Pagination */
+[data-theme="dark"] .page-link {
+  background: var(--bg-card);
+  color: var(--text);
+  border-color: var(--border);
+}
+[data-theme="dark"] .page-item.active .page-link {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* ============================================================
+   FORCE ALL TEXT WHITE IN DARK MODE
+   Ensures every text and number is clearly visible on dark bg
+   ============================================================ */
+[data-theme="dark"] body,
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] div,
+[data-theme="dark"] h1, [data-theme="dark"] h2,
+[data-theme="dark"] h3, [data-theme="dark"] h4,
+[data-theme="dark"] h5, [data-theme="dark"] h6,
+[data-theme="dark"] label,
+[data-theme="dark"] li,
+[data-theme="dark"] td,
+[data-theme="dark"] th,
+[data-theme="dark"] strong,
+[data-theme="dark"] b,
+[data-theme="dark"] small,
+[data-theme="dark"] a:not(.btn-primary):not(.btn-danger):not(.btn-success):not(.btn-warning):not(.btn-info),
+[data-theme="dark"] .card,
+[data-theme="dark"] .card-body,
+[data-theme="dark"] .card-header,
+[data-theme="dark"] .card-footer,
+[data-theme="dark"] .stat-value,
+[data-theme="dark"] .stat-label,
+[data-theme="dark"] .stat-trend,
+[data-theme="dark"] .form-label,
+[data-theme="dark"] .form-text,
+[data-theme="dark"] .breadcrumb-item,
+[data-theme="dark"] .page-title,
+[data-theme="dark"] .nav-link,
+[data-theme="dark"] .dropdown-item,
+[data-theme="dark"] .dropdown-header,
+[data-theme="dark"] .modal-title,
+[data-theme="dark"] .table,
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th,
+[data-theme="dark"] .alert,
+[data-theme="dark"] .list-group-item,
+[data-theme="dark"] .empty-state,
+[data-theme="dark"] .toast,
+[data-theme="dark"] .lead,
+[data-theme="dark"] footer,
+[data-theme="dark"] .sidebar-footer,
+[data-theme="dark"] .brand-text,
+[data-theme="dark"] .notif-item,
+[data-theme="dark"] .notif-time,
+[data-theme="dark"] .kiosk-product .p-name,
+[data-theme="dark"] .kiosk-product .p-cat,
+[data-theme="dark"] .kiosk-product .p-price,
+[data-theme="dark"] .cart-table,
+[data-theme="dark"] .receipt,
+[data-theme="dark"] .pay-method .pay-label {
+  color: #ffffff !important;
+}
+
+/* Muted text stays slightly lighter but readable */
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .text-secondary,
+[data-theme="dark"] .text-body-secondary {
+  color: #c9d2de !important;
+}
+
+/* Keep buttons text white on their colored backgrounds */
+[data-theme="dark"] .btn {
+  color: #fff !important;
+}
+[data-theme="dark"] .btn-outline-primary,
+[data-theme="dark"] .btn-outline-secondary,
+[data-theme="dark"] .btn-outline-danger,
+[data-theme="dark"] .btn-outline-success,
+[data-theme="dark"] .btn-outline-warning,
+[data-theme="dark"] .btn-soft,
+[data-theme="dark"] .btn-light {
+  color: #ffffff !important;
+}
+
+/* Badges keep their own colors -- ensure text readable */
+[data-theme="dark"] .badge { color: #fff !important; }
+[data-theme="dark"] .badge-soft-warning { color: #ffd9a8 !important; }
+[data-theme="dark"] .badge.bg-warning { color: #1d2630 !important; }
+
+/* Form controls */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  color: #ffffff !important;
+}
+[data-theme="dark"] .form-control::placeholder {
+  color: #9aa7b8 !important;
+}
+
+/* Pagination */
+[data-theme="dark"] .page-link { color: #ffffff !important; }
+
+/* Links default white unless colored button */
+[data-theme="dark"] a:not([class*="btn"]) { color: #ffffff !important; }
+[data-theme="dark"] a:not([class*="btn"]):hover { color: var(--primary) !important; }
+
+/* Chart text */
+[data-theme="dark"] .chart-label,
+[data-theme="dark"] .chart-legend { color: #ffffff !important; }
+
+/* ============================================================
+   KIOSK CART BUTTON FIX
+   The cart-btn has a WHITE background. In dark mode the global
+   "a:not([class*='btn'])" rule forces its text white, making it
+   invisible (white on white). Keep its text the brand red.
+   ============================================================ */
+[data-theme="dark"] a.cart-btn,
+[data-theme="dark"] .cart-btn,
+[data-theme="dark"] .cart-btn .bi,
+[data-theme="dark"] .cart-btn i,
+[data-theme="dark"] .cart-btn strong {
+  color: var(--primary) !important;
+}
+/* The count badge keeps white text on red - untouched */
+
+/* ============================================================
+   FORCE ALL TEXT BLACK IN LIGHT MODE
+   Ensures every text and number is clearly visible on white bg
+   ============================================================ */
+[data-theme="light"] body,
+[data-theme="light"] p,
+[data-theme="light"] span,
+[data-theme="light"] div,
+[data-theme="light"] h1, [data-theme="light"] h2,
+[data-theme="light"] h3, [data-theme="light"] h4,
+[data-theme="light"] h5, [data-theme="light"] h6,
+[data-theme="light"] label,
+[data-theme="light"] li,
+[data-theme="light"] td,
+[data-theme="light"] th,
+[data-theme="light"] strong,
+[data-theme="light"] b,
+[data-theme="light"] small,
+[data-theme="light"] .card,
+[data-theme="light"] .card-body,
+[data-theme="light"] .card-header,
+[data-theme="light"] .card-footer,
+[data-theme="light"] .stat-value,
+[data-theme="light"] .stat-label,
+[data-theme="light"] .stat-trend,
+[data-theme="light"] .form-label,
+[data-theme="light"] .form-text,
+[data-theme="light"] .breadcrumb-item,
+[data-theme="light"] .page-title,
+[data-theme="light"] .nav-link,
+[data-theme="light"] .dropdown-item,
+[data-theme="light"] .dropdown-header,
+[data-theme="light"] .modal-title,
+[data-theme="light"] .table,
+[data-theme="light"] .table td,
+[data-theme="light"] .table th,
+[data-theme="light"] .alert,
+[data-theme="light"] .list-group-item,
+[data-theme="light"] .empty-state,
+[data-theme="light"] .toast,
+[data-theme="light"] .lead,
+[data-theme="light"] footer,
+[data-theme="light"] .sidebar-footer,
+[data-theme="light"] .brand-text,
+[data-theme="light"] .notif-item,
+[data-theme="light"] .notif-time,
+[data-theme="light"] .kiosk-product .p-name,
+[data-theme="light"] .kiosk-product .p-cat,
+[data-theme="light"] .kiosk-product .p-price,
+[data-theme="light"] .cart-table,
+[data-theme="light"] .receipt,
+[data-theme="light"] .pay-method .pay-label {
+  color: #1d2630 !important;
+}
+
+/* Muted text stays readable gray in light mode */
+[data-theme="light"] .text-muted,
+[data-theme="light"] .text-secondary,
+[data-theme="light"] .text-body-secondary {
+  color: #55606d !important;
+}
+
+/* Keep buttons text white on their colored backgrounds */
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .btn-success,
+[data-theme="light"] .btn-danger,
+[data-theme="light"] .btn-warning,
+[data-theme="light"] .btn-info {
+  color: #fff !important;
+}
+[data-theme="light"] .btn-outline-primary,
+[data-theme="light"] .btn-outline-secondary,
+[data-theme="light"] .btn-outline-danger,
+[data-theme="light"] .btn-outline-success,
+[data-theme="light"] .btn-outline-warning {
+  color: #1d2630 !important;
+}
+
+/* Badges keep their own colors -- ensure text readable */
+[data-theme="light"] .badge { color: #1d2630 !important; }
+[data-theme="light"] .badge.bg-primary,
+[data-theme="light"] .badge.bg-success,
+[data-theme="light"] .badge.bg-danger,
+[data-theme="light"] .badge.bg-info {
+  color: #fff !important;
+}
+
+/* Form controls */
+[data-theme="light"] .form-control,
+[data-theme="light"] .form-select {
+  color: #1d2630 !important;
+}
+[data-theme="light"] .form-control::placeholder {
+  color: #9aa7b8 !important;
+}
+
+/* Pagination */
+[data-theme="light"] .page-link { color: #1d2630 !important; }
+
+/* Links default dark unless colored button */
+[data-theme="light"] a:not([class*="btn"]) { color: #1d2630 !important; }
+[data-theme="light"] a:not([class*="btn"]):hover { color: var(--primary) !important; }
+
+/* Chart text */
+[data-theme="light"] .chart-label,
+[data-theme="light"] .chart-legend { color: #1d2630 !important; }
+
+/* Table headers keep muted look but still readable */
+[data-theme="light"] .table thead th { color: #55606d !important; }
+
+/* ============================================================
+   GLOBAL BASE (no theme selector) - ensures text is ALWAYS dark
+   in light/default mode. Uses html:not([data-theme="dark"]) so
+   it applies whenever the page is NOT in dark mode.
+   ============================================================ */
+html:not([data-theme="dark"]) body,
+html:not([data-theme="dark"]) p,
+html:not([data-theme="dark"]) span,
+html:not([data-theme="dark"]) div:not(.stat-icon),
+html:not([data-theme="dark"]) h1,
+html:not([data-theme="dark"]) h2,
+html:not([data-theme="dark"]) h3,
+html:not([data-theme="dark"]) h4,
+html:not([data-theme="dark"]) h5,
+html:not([data-theme="dark"]) h6,
+html:not([data-theme="dark"]) label,
+html:not([data-theme="dark"]) li,
+html:not([data-theme="dark"]) td,
+html:not([data-theme="dark"]) th,
+html:not([data-theme="dark"]) strong,
+html:not([data-theme="dark"]) b,
+html:not([data-theme="dark"]) small,
+html:not([data-theme="dark"]) .stat-value,
+html:not([data-theme="dark"]) .stat-label,
+html:not([data-theme="dark"]) .stat-trend,
+html:not([data-theme="dark"]) .breadcrumb-item,
+html:not([data-theme="dark"]) .page-title,
+html:not([data-theme="dark"]) .nav-link,
+html:not([data-theme="dark"]) .dropdown-item,
+html:not([data-theme="dark"]) .dropdown-header,
+html:not([data-theme="dark"]) .modal-title,
+html:not([data-theme="dark"]) .table,
+html:not([data-theme="dark"]) .table td,
+html:not([data-theme="dark"]) .table th,
+html:not([data-theme="dark"]) .form-control,
+html:not([data-theme="dark"]) .form-select {
+  color: #1d2630 !important;
+}
+
+/* Base links dark */
+html:not([data-theme="dark"]) a:not([class*="btn"]) { color: #1d2630 !important; }
+html:not([data-theme="dark"]) a:not([class*="btn"]):hover { color: var(--primary) !important; }
+
+/* Base text-muted readable in light */
+html:not([data-theme="dark"]) .text-muted,
+html:not([data-theme="dark"]) .text-secondary,
+html:not([data-theme="dark"]) .text-body-secondary {
+  color: #55606d !important;
+}
+
+/* ============================================================
+   KIOSK CART BUTTON - ULTIMATE FIX (highest specificity)
+   Placed at the very end so it wins over every other rule.
+   The cart button is a WHITE pill. Its text + icon must be
+   RED (brand color) so they are clearly visible on white.
+   ============================================================ */
+html[data-theme="dark"] .kiosk-topbar .cart-btn,
+html[data-theme="dark"] .kiosk-topbar a.cart-btn {
+  background: #ffffff !important;
+  color: var(--primary) !important;
+}
+html[data-theme="dark"] .kiosk-topbar .cart-btn .bi,
+html[data-theme="dark"] .kiosk-topbar .cart-btn i,
+html[data-theme="dark"] .kiosk-topbar .cart-btn span.primary-text,
+html[data-theme="dark"] .kiosk-topbar .cart-btn .cart-label {
+  color: var(--primary) !important;
+}
+/* Force any direct text inside the cart button to be red */
+html[data-theme="dark"] .kiosk-topbar .cart-btn {
+  -webkit-text-fill-color: var(--primary) !important;
+}
+/* Keep the count badge white text on red circle */
+html[data-theme="dark"] .kiosk-topbar .cart-btn .count {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
